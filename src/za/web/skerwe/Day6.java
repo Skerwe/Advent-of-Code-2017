@@ -1,4 +1,4 @@
-package services.workplaceLivingServices.test.manual;
+package za.web.skerwe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ public class Day6 {
 
     public static void main(String[] args) {
 
-        int[] input = {4,1,15,12,0,9,9,5,5,8,7,3,14,5,12,3};
+        int[] input = {4, 1, 15, 12, 0, 9, 9, 5, 5, 8, 7, 3, 14, 5, 12, 3};
         new Day6().process(input);
     }
 
