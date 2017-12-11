@@ -1,4 +1,4 @@
-package za.web.skerwe;
+package za.web.skerwe.adventofcode;
 
 /**
  * http://www.guideforschool.com/1260759-java-program-to-print-circular-spiral-matrix/

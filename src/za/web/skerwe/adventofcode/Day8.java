@@ -1,4 +1,4 @@
-package za.web.skerwe;
+package za.web.skerwe.adventofcode;
 
 import java.util.HashMap;
 
@@ -1083,7 +1083,7 @@ public class Day8 {
         if (registerValue > highestValue) {
             highestValue = registerValue;
         }
-        
+
         registers.put(commands[0], registerValue);
     }
 

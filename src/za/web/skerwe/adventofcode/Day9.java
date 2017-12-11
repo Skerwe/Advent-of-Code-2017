@@ -1,4 +1,4 @@
-package za.web.skerwe;
+package za.web.skerwe.adventofcode;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

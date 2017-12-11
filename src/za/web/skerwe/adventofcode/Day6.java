@@ -1,4 +1,4 @@
-package za.web.skerwe;
+package za.web.skerwe.adventofcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
