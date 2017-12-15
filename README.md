@@ -15,4 +15,4 @@ Compile
 Run
 > ant dist
 
-> java -cp dist/lib/\*.jar class.name
+> java -cp build/dist/\*.jar class.name
