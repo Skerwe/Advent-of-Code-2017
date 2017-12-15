@@ -1,5 +1,5 @@
-<project name="Advent of Code 2017" default="compile" basedir=".">
-    <description></description>
+<project name="AdventOfCode2017" default="dist" basedir=".">
+    <description>Advent of Code 2017</description>
 
     <property name="src" location="src/"/>
     <property name="build" location="out/production/${ant.project.name}/"/>
