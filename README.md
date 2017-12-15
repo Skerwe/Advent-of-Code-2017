@@ -1,11 +1,11 @@
 # Advent of Code 2017
 
-[Advent of Code](http://adventofcode.com/)
+Advent of Code website: https://adventofcode.com/2017
 
 ## Build Prerequisite
 
-* JDK 7+
-* Apache Ant
+* [JDK 7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [Apache Ant](http://ant.apache.org/)
 
 ## Build Commands
 
