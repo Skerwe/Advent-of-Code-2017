@@ -24,133 +24,59 @@ public class Day13 {
     }
 
     public int part1(String[] input) {
-        HashMap<Integer, Scan> firewall = new HashMap<>();
-        int severity = 0, position = 0;
+        List<Scan> firewall = buildFirewall(input);
+        int severity = 0;
 
-        int destination = buildFirewall(input, firewall);
-
-        while (position <= destination) {
-            Scan scan = firewall.get(position);
-            if (scan != null && scan.getCurrentPosition() == 0) {
-                severity += (scan.getDepth() * scan.getRange());
+        for (Scan scan : firewall) {
+            int interval = (scan.range * 2) - 2;
+            if (scan.depth % interval == 0) {
+                severity += scan.depth * scan.range;
             }
-            update(firewall);
-            position++;
         }
 
-        return severity;
+      return severity;
     }
 
     public int part2(String[] input) {
-      HashMap<Integer, Scan> firewall = new HashMap<>();
+        List<Scan> firewall = buildFirewall(input);
+        int picoseconds = 0;
+        boolean complete;
 
-      int destination = buildFirewall(input, firewall);
+        do {
+            complete = true;
+            for (Scan scan : firewall) {
+                int interval = (scan.range * 2) - 2;
+                if ((scan.depth + picoseconds) % interval == 0) {
+                    picoseconds++;
+                    complete = false;
+                    break;
+                }
+            }
+        } while (!complete);
 
-      return 0;
+        return picoseconds;
     }
 
-  /**
-   * Build the firewall matrix and returns the furthest location's index.
-   * @param  String[]         input         the firewall and scanner data
-   * @param  HashMap<Integer, Scan>         firewall      the firewall matrix
-   * @return                  the final scanner in the firewall's index
-   */
-    public int buildFirewall(String[] input, HashMap<Integer, Scan> firewall) {
-        int destination = 0;
+    private List<Scan> buildFirewall(String[] input) {
+        List<Scan> firewall = new ArrayList<>();
 
         for (String scanner : input) {
-
             String[] data = scanner.split(" ");
             int depth = Integer.parseInt(data[0].replace(':', ' ').trim());
             int range = Integer.parseInt(data[1].replace(':', ' ').trim());
-            firewall.put(depth, new Scan(depth, range));
-
-            if (depth > destination) {
-                destination = depth;
-            }
+            firewall.add(new Scan(depth, range));
         }
-        return destination;
+        return firewall;
     }
 
-    public void update(HashMap<Integer, Scan> firewall) {
-        for (Scan scan : firewall.values()) {
-            scan.move();
-        }
-    }
+    private class Scan {
 
-    class Scan {
-
-        private int depth;
-        private int range;
-
-        private int currentPosition;
-        private int direction;
+        public int depth;
+        public int range;
 
         public Scan(int depth, int range) {
             this.depth = depth;
             this.range = range;
-
-            this.currentPosition = 0;
-            this.direction = 1;
         }
-
-        public void move() {
-            currentPosition += direction;
-            if (currentPosition == range-1) {
-                direction = -1;
-            }
-            if (currentPosition == 0) {
-                direction = 1;
-            }
-        }
-
-        public Scan clone() {
-            Scan clone = new Scan(this.depth, this.range);
-            clone.setCurrentPosition(this.currentPosition);
-            clone.setDirection(this.direction);
-            return clone;
-        }
-
-        public int getDepth() {
-            return depth;
-        }
-
-        public void setDepth(int depth) {
-            this.depth = depth;
-        }
-
-        public int getRange() {
-            return range;
-        }
-
-        public void setRange(int range) {
-            this.range = range;
-        }
-
-        public int getCurrentPosition() {
-            return currentPosition;
-        }
-
-        public void setCurrentPosition(int currentPosition) {
-            this.currentPosition = currentPosition;
-        }
-
-        public int getDirection() {
-            return direction;
-        }
-
-        public void setDirection(int direction) {
-            this.direction = direction;
-        }
-
-        @Override
-        public String toString() {
-            return "Scan{" +
-                    "depth=" + depth +
-                    ", range=" + range +
-                    ", currentPosition=" + currentPosition +
-                    ", direction=" + direction +
-                    '}';
-        }
-      }
+    }
 }
