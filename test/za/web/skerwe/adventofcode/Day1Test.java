@@ -4,7 +4,6 @@ import java.io.IOException;
 import za.web.skerwe.util.InputFileReader;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.BeforeClass;
 
@@ -20,13 +19,13 @@ public class Day1Test {
   }
 
   @Test
-  public void testSolveCaptchaPart1() {
-    assertEquals(1141, Day1Test.challenge.part1(input[0]));
+  public void testPart1() {
+    assertEquals(1141, challenge.part1(input[0]));
   }
 
   @Test
-  public void testSolveCaptchaPart2() {
-    assertEquals(950, Day1Test.challenge.part2(input[0]));
+  public void testPart2() {
+    assertEquals(950, challenge.part2(input[0]));
   }
 
 }
