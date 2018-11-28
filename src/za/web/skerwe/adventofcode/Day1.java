@@ -1,22 +1,9 @@
 package za.web.skerwe.adventofcode;
 
-import java.io.IOException;
-import za.web.skerwe.util.InputFileReader;
-
+/**
+  Day 1: Inverse Captcha
+*/
 public class Day1 {
-
-    public static void main(String[] args) {
-      try {
-        String[] input = InputFileReader.readInputFile("input/day01.txt");
-        Day1 challenge = new Day1();
-
-        System.out.println(String.format("Solution to the captcha = %s", challenge.part1(input[0])));
-        System.out.println(String.format("Solution to the new captcha = %s", challenge.part2(input[0])));
-
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
 
     public int part1(String input) {
       return solveCaptcha(input, 1);
