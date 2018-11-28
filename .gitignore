@@ -1,20 +1,24 @@
+# Project specific generated output folders
 build
+
+# IntelliJ IDEA project files and folders
+.idea
+*.iml
+*.ipr
+*.iws
+.ideaDataSources
+
+# Visual Studio Code project files and folders
+.vscode
+
+# BlueJ files
+*.ctxt
 
 # Compiled class file
 *.class
 
 # Log file
 *.log
-
-# BlueJ files
-*.ctxt
-
-#IntelliJ files
-.idea
-*iml
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
 # Package Files #
 *.jar
@@ -23,6 +27,3 @@ build
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
