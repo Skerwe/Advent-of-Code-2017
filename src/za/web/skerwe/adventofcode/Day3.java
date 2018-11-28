@@ -1,21 +1,14 @@
 package za.web.skerwe.adventofcode;
 
 /**
- * http://www.guideforschool.com/1260759-java-program-to-print-circular-spiral-matrix/
- * http://www.guideforschool.com/1728514-java-program-to-print-a-variation-of-circular-spiral-matrix/
+  Day 3: Spiral Memory
+
+  http://www.guideforschool.com/1260759-java-program-to-print-circular-spiral-matrix/
+  http://www.guideforschool.com/1728514-java-program-to-print-a-variation-of-circular-spiral-matrix/
  */
 public class Day3 {
 
-    public static void main(String[] args) {
-
-        int input = 312051;
-
-        Day3 challenge = new Day3();
-        System.out.println("\nManhattan Distance="+challenge.doTask1(input));
-        System.out.println("Answer="+challenge.doTask2(input));
-    }
-
-    private int doTask1(int input) {
+    public int part1(int input) {
 
         int manhattanDistance;
         int destinationRow = 0, destinationColumn = 0, startRow = 0, startColumn = 0;
@@ -42,7 +35,7 @@ public class Day3 {
         return manhattanDistance;
     }
 
-    private int doTask2(int input) {
+    public int part2(int input) {
 
         int startRow = 0, startColumn = 0;
         int numberOfElements = calculateMatrixElementSize(input);
@@ -52,14 +45,12 @@ public class Day3 {
 
         matrix: for(int i = 0 ; i < numberOfElements; i++) {
             for(int j = 0; j < numberOfElements; j++) {
-//                System.out.print(matrix[i][j]+ "\t");
                 if (matrix[i][j] == 1) {
                     startRow = i;
                     startColumn = j;
                     break matrix;
                 }
             }
-//            System.out.println();
         }
 
         // store the value 1 in square 1
