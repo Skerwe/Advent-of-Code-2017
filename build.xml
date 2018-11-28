@@ -96,7 +96,7 @@
     </junit>
   </target>
 
-  <target name="dist" depends="compile, doc" description="generate the distribution artifact"></target>
+  <target name="dist" depends="compile" description="generate the distribution artifact"></target>
 
   <target name="all" depends="init, dist" description="clean, compile and build distribution package"/>
 
