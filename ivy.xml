@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ivy-module version="2.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+  <info organisation="za.web.skerwe" module="Advent-Of-Code-2017" status="integration">
+    <license name="Unlicense" url="http://unlicense.org"/>
+    <ivyauthor name="Quintin Henn" url="quintin.henn@gmail.com"/>
+    <description homepage="http://www.skerwe.web.za/">
+      Advent of Code 2017
+    </description>
+  </info>
+
+  <configurations>
+    <conf name="build" description="development dependencies"/>
+    <conf name="test" extends="build" visibility="private" description="testing dependencies"/>
+  </configurations>
+
+  <publications>
+    <artifact name="template" type="jar" conf="build" ext="jar"/>
+    <artifact name="template" type="source" conf="build" ext="jar"/>
+    <artifact name="template" type="javadoc" conf="build" ext="jar"/>
+  </publications>
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+    <dependency org="org.apache.commons" name="commons-lang3" rev="3.8" conf="build->default"/>
+
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependency org="junit" name="junit" rev="4.12" conf="test->default"/>
+
+  </dependencies>
+</ivy-module>

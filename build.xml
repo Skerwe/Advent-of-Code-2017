@@ -1,28 +1,80 @@
-<project name="AdventOfCode2017" default="dist" basedir=".">
-    <description>Advent of Code 2017</description>
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Advent-Of-Code-2017" xmlns:ivy="antlib:org.apache.ivy.ant" default="dist" basedir=".">
+  <description>Advent of Code 2017</description>
 
-    <property name="src" location="src/"/>
-    <property name="build" location="build/classes/"/>
-    <property name="dist" location="build/dist/"/>
-    <property name="test" location="build/test/"/>
+  <property environment="env"/>
 
-    <target name="init">
-        <tstamp/>
-        <mkdir dir="${build}"/>
-    </target>
+  <property file="build.properties"/>
+  <property name="ivy.file" value="ivy.xml"/>
 
-    <target name="compile" depends="init" description="compile the source">
-        <javac srcdir="${src}" destdir="${build}"/>
-    </target>
+  <property name="dist.dir" location="${build.dir}/dist"/>
+  <property name="classes.dir" location="${build.dir}/classes"/>
 
-    <target name="dist" depends="compile" description="generate the distribution">
-        <mkdir dir="${dist}"/>
-        <jar jarfile="${dist}/${ant.project.name}-${DSTAMP}.jar" basedir="${build}"/>
-    </target>
+  <property name="ivy.local.default.ivy.pattern" value="[organisation]/[module]/[revision]/ivy.xml"/>
+  <property name="ivy.local.default.artifact.pattern" value="[organisation]/[module]/[revision]/[artifact].[ext]"/>
 
-    <target name="clean" description="clean up">
-        <delete dir="${build}"/>
-        <delete dir="${dist}"/>
-        <delete dir="${test}"/>
-    </target>
+  <!-- Installing Ivy : START -->
+  <property name="ivy.install.version" value="2.4.0"/>
+  <condition property="ivy.home" value="${env.IVY_HOME}">
+    <isset property="env.IVY_HOME"/>
+  </condition>
+  <property name="ivy.home" value="${user.home}/.ant"/>
+  <property name="ivy.jar.dir" value="${ivy.home}/lib"/>
+  <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+
+  <target name="download-ivy" unless="offline">
+    <mkdir dir="${ivy.jar.dir}"/>
+    <!-- download Ivy from web site so that it can be used even without any special installation -->
+    <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+  </target>
+
+  <target name="init-ivy" depends="download-ivy">
+    <path id="ivy.lib.path">
+      <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+    </path>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+  </target>
+  <!-- Installing Ivy : END -->
+
+  <path id="application" location="${dist.dir}/${dist.jar.name}"/>
+
+  <path id="build.classpath" description="the application dependencies">
+    <fileset dir="${lib.dir}/build" includes="**/*.jar"/>
+  </path>
+
+  <path id="test.classpath" description="the dependencies for testing">
+    <fileset dir="${lib.dir}/test" includes="**/*.jar"/>
+  </path>
+
+  <target name="init" description="initialise development environment">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${lib.dir}"/>
+
+    <mkdir dir="${lib.dir}/build"/>
+    <mkdir dir="${lib.dir}/test"/>
+  </target>
+
+  <target name="clean" description="clean the development environment">
+    <delete dir="${dist.dir}"/>
+    <delete dir="${classes.dir}"/>
+  </target>
+
+  <target name="resolve" depends="init-ivy" description="resolve project dependencies">
+    <ivy:resolve file="${ivy.file}"/>
+    <ivy:retrieve sync="true" type="jar, bundle" pattern="${lib.dir}/[conf]/[artifact].[ext]"/>
+  </target>
+
+  <target name="compile" depends="clean, resolve" description="compile the source code">
+    <tstamp/>
+    <mkdir dir="${classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath" debug="on" source="1.7" target="1.7" includeantruntime="false"/>
+
+    <mkdir dir="${build.dir}/test"/>
+    <javac srcdir="${test.dir}" destdir="${build.dir}/test" classpathref="test.classpath" debug="on" source="1.7" target="1.7" includeantruntime="false">
+      <classpath>
+        <dirset dir="${classes.dir}"/>
+      </classpath>
+    </javac>
+  </target>
+
 </project>
