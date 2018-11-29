@@ -5,10 +5,9 @@ package za.web.skerwe.adventofcode;
 */
 public class Day2 {
 
-    public int part1(String input) {
+    public int part1(String[] input) {
         int total = 0;
-        String[] rows = input.split("\n");
-        for (String row : rows) {
+        for (String row : input) {
 
             String[] columns = row.split("\t");
             int largest = 0;
@@ -31,10 +30,9 @@ public class Day2 {
         return total;
     }
 
-    public int part2(String input) {
+    public int part2(String[] input) {
         int total = 0;
-        String[] rows = input.split("\n");
-        for (String row : rows) {
+        for (String row : input) {
             String[] columns = row.split("\t");
 
             for (int i = 0; i < columns.length; i++) {
