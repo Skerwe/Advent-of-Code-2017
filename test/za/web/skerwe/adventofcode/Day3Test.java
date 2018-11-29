@@ -1,8 +1,5 @@
 package za.web.skerwe.adventofcode;
 
-import java.io.IOException;
-import za.web.skerwe.util.InputFileReader;
-
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -13,7 +10,7 @@ public class Day3Test {
   private static int input = 312051;
 
   @BeforeClass
-  public static void setup() throws IOException {
+  public static void setup() {
     challenge = new Day3();
   }
 
