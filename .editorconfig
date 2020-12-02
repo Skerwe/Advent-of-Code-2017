@@ -1,21 +1,27 @@
-# For more information about the properties used in
-# this file, please see the EditorConfig documentation:
-# http://editorconfig.org/
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
 
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = crlf
+end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+indent_style = space
+indent_size = 2
+
+[*.java]
+indent_style = space
+indent_size = 2
+continuation_indent_size = 0
+
+[*.txt]
+indent_style = space
+indent_size = 4
+continuation_indent_size = 0
 
 [*.md]
 trim_trailing_whitespace = false
 
-[*.java]
-indent_style = space
-indent_size = 4
-continuation_indent_size = 0
