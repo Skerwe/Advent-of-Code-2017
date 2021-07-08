@@ -6,7 +6,7 @@ My attempt at the Advent of Code for 2017
 
 ## Build Prerequisite
 
-- [JDK 7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Apache Ant](http://ant.apache.org/)
 - [Apache Ivy](http://ant.apache.org/ivy/)
 
