@@ -69,10 +69,10 @@
   <target name="compile" depends="clean, resolve" description="compile the source code">
     <tstamp/>
     <mkdir dir="${classes.dir}"/>
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath" debug="on" source="1.7" target="1.7" includeantruntime="false"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath" debug="on" source="1.8" target="1.8" includeantruntime="false"/>
 
     <mkdir dir="${build.dir}/test"/>
-    <javac srcdir="${test.dir}" destdir="${build.dir}/test" classpathref="test.classpath" debug="on" source="1.7" target="1.7" includeantruntime="false">
+    <javac srcdir="${test.dir}" destdir="${build.dir}/test" classpathref="test.classpath" debug="on" source="1.8" target="1.8" includeantruntime="false">
       <classpath>
         <dirset dir="${classes.dir}"/>
       </classpath>

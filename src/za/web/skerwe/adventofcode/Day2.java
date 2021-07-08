@@ -1,65 +1,68 @@
 package za.web.skerwe.adventofcode;
 
 /**
-  Day 2: Corruption Checksum
-*/
+ * Day 2: Corruption Checksum
+ */
 public class Day2 {
 
-    public int part1(String[] input) {
-        int total = 0;
-        for (String row : input) {
+  public int part1(String[] input) {
+    int total = 0;
+    for (String row : input) {
 
-            String[] columns = row.split("\t");
-            int largest = 0;
-            int smallest = 0;
+      String[] columns = row.split("\t");
+      int largest = 0;
+      int smallest = 0;
 
-            for (String column : columns) {
+      for (String column : columns) {
 
-                int value = Integer.parseInt(column);
+        int value = Integer.parseInt(column);
 
-                if (smallest == 0) { smallest = value;}
-                if (value < smallest) {
-                    smallest = value;
-                } else if (value > largest) {
-                    largest = value;
-                }
-            }
-            total += (largest - smallest);
+        if (smallest == 0) {
+          smallest = value;
         }
-
-        return total;
+        if (value < smallest) {
+          smallest = value;
+        } else if (value > largest) {
+          largest = value;
+        }
+      }
+      total += (largest - smallest);
     }
 
-    public int part2(String[] input) {
-        int total = 0;
-        for (String row : input) {
-            String[] columns = row.split("\t");
+    return total;
+  }
 
-            for (int i = 0; i < columns.length; i++) {
-                if (i + 1 == columns.length) { break; }
-                else {
-                    for (int j = i + 1; j < columns.length; j++) {
+  public int part2(String[] input) {
+    int total = 0;
+    for (String row : input) {
+      String[] columns = row.split("\t");
 
-                        float value1, value2;
-                        float temp1 = Float.parseFloat((columns[i]));
-                        float temp2 = Float.parseFloat(columns[j]);
+      for (int i = 0; i < columns.length; i++) {
+        if (i + 1 == columns.length) {
+          break;
+        } else {
+          for (int j = i + 1; j < columns.length; j++) {
 
-                        if (temp1 > temp2) {
-                            value1 = temp1;
-                            value2 = temp2;
-                        } else {
-                            value1 = temp2;
-                            value2 = temp1;
-                        }
+            float value1, value2;
+            float temp1 = Float.parseFloat((columns[i]));
+            float temp2 = Float.parseFloat(columns[j]);
 
-                        if ((value1 % value2) == 0) {
-                            total += (value1 / value2);
-                        }
-                    }
-                }
+            if (temp1 > temp2) {
+              value1 = temp1;
+              value2 = temp2;
+            } else {
+              value1 = temp2;
+              value2 = temp1;
             }
-        }
 
-        return total;
+            if ((value1 % value2) == 0) {
+              total += (value1 / value2);
+            }
+          }
+        }
+      }
     }
+
+    return total;
+  }
 }

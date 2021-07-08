@@ -22,6 +22,8 @@ public class InputFileReader {
       lines.add(line);
     }
 
+    inputStream.close();
+
     return lines.toArray(new String[0]);
   }
 

@@ -1,5 +1,6 @@
 # Project specific generated output folders
 build
+libs
 
 # IntelliJ IDEA project files and folders
 .idea
